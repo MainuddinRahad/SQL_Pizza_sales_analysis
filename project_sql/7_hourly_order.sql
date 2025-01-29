@@ -22,7 +22,7 @@ FROM
     LEFT JOIN orders
     ON order_details.order_id = orders.order_id
 GROUP BY order_time
-ORDER BY total_order DESC;
+
 
 
 /*
