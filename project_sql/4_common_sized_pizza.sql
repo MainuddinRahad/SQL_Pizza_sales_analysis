@@ -15,6 +15,12 @@ ORDER BY order_pizza DESC;
 
 /*
 
+-- Large (L) pizzas are the most ordered (18,526 orders), indicating a strong preference for group or family-sized meals.
+
+-- Medium (15,385) and Small (14,137) pizzas also have high demand, showing that individual and personal-sized options are popular.
+
+-- Extra Large (XL) and XXL pizzas have very low demand (544 and 28 orders, respectively), suggesting they may not be cost-effective to stock.
+
 
 [
   {

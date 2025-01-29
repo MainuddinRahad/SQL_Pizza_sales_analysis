@@ -135,4 +135,52 @@ LIMIT 10;
 
 ![highest price pizza](assets/c_2.PNG)
 
+### 4. Identify the most common pizza size ordered.
+
+```sql
+SELECT
+    size AS pizza_size,
+    count(order_id) AS order_pizza
+FROM
+    order_details
+    LEFT JOIN pizzas
+    ON order_details.pizza_id = pizzas.pizza_id
+GROUP BY pizza_size
+ORDER BY order_pizza DESC;
+```
+
+- Large **(L)** pizzas are the most ordered **(18,526 orders)**, indicating a strong preference for group or family-sized meals.
+
+- **Medium (15,385)** and **Small (14,137)** pizzas also have high demand, showing that individual and personal-sized options are popular.
+
+- Extra Large **(XL)** and **XXL** pizzas have very low demand (**544 and 28 orders**, respectively), suggesting they may not be cost-effective to stock.
+
+![alt text](assets/ca_1.PNG)
+
+### 5. List the top 5 most ordered pizza types along with their quantities.
+
+```sql
+SELECT
+    pizza_types.pizza_type_id AS pizza_type,
+    sum(quantity) AS total_ordered_pizza
+FROM
+    order_details
+    LEFT JOIN pizzas
+    ON order_details.pizza_id = pizzas.pizza_id
+    LEFT JOIN pizza_types
+    ON pizzas.pizza_type_id = pizza_types.pizza_type_id
+GROUP BY pizza_type
+ORDER BY total_ordered_pizza DESC
+LIMIT 5;
+```
+- **Classic Deluxe (2,453 orders)** leads the ranking, indicating strong customer preference for traditional flavors.
+
+- **BBQ Chicken (2,432)** and **Hawaiian (2,422)** pizzas follow closely, showing a demand for sweet-savory and smoky flavors.
+
+- **Pepperoni (2,418)** remains a favorite classic choice, with consistent orders.
+
+- **Thai Chicken (2,371)** rounds out the top 5, suggesting an interest in unique, spicy flavors.
+
+![alt text](assets/ca_2.PNG)
+
 

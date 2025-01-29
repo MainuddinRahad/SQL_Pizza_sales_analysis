@@ -21,16 +21,40 @@ ORDER BY total_ordered_pizza DESC
 LIMIT 5;
 
 
+
 /*
 
--- The order volumes of these top pizzas are very close, with less
-   than a 100-order difference between the highest ("classic_dlx") and the fifth-ranked ("thai_ckn").
+-- Classic Deluxe (2,453 orders) leads the ranking, indicating strong customer preference for traditional flavors.
 
--- Despite being polarizing for some, "hawaiian" ranks 3rd, proving 
-   its strong appeal to a specific customer segment.
+-- BBQ Chicken (2,432) and Hawaiian (2,422) pizzas follow closely, showing a demand for sweet-savory and smoky flavors.
 
--- Despite being polarizing for some, "hawaiian" ranks 3rd, proving
-   its strong appeal to a specific customer segment.
+-- Pepperoni (2,418) remains a favorite classic choice, with consistent orders.
+
+-- Thai Chicken (2,371) rounds out the top 5, suggesting an interest in unique, spicy flavors.
+
+
+[
+  {
+    "pizza_type": "classic_dlx",
+    "total_ordered_pizza": "2453"
+  },
+  {
+    "pizza_type": "bbq_ckn",
+    "total_ordered_pizza": "2432"
+  },
+  {
+    "pizza_type": "hawaiian",
+    "total_ordered_pizza": "2422"
+  },
+  {
+    "pizza_type": "pepperoni",
+    "total_ordered_pizza": "2418"
+  },
+  {
+    "pizza_type": "thai_ckn",
+    "total_ordered_pizza": "2371"
+  }
+]
 
 */
 
