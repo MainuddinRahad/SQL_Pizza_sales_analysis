@@ -230,7 +230,6 @@ Here's the visual representation of this query.
 ![alt text](assets/ca_3.PNG)
 
 Also I can added a pie chart to better visualization.
-
 ![alt text](assets/c_3.PNG)
 
 
