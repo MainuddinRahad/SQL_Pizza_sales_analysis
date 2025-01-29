@@ -59,7 +59,7 @@ FROM
     orders
 ```
 
-![total_order](assets\Capture.PNG)
+![total_order](assets/Capture.PNG)
 
 This result indicates that a total of 21,350 pizzas were ordered across all entries in the year of 2015.
 
@@ -95,3 +95,23 @@ ORDER BY quarterly_revenue ASC
 - Q4 has the lowest revenue at **$199,124.10**, about 3-4% lower than the other quarters.
 
 ![revenue](assets\c_1.PNG)
+
+I can create this line chart by using Power BI.
+
+### 3. Identify the ( TOP - 10 ) highest-priced pizza.
+
+```sql
+SELECT
+    name AS pizza_name,
+    price,
+    count(order_details.pizza_id) AS pizza_order
+FROM
+    pizza_types
+    LEFT JOIN pizzas
+    ON pizza_types.pizza_type_id = pizzas.pizza_type_id
+    LEFT JOIN order_details
+    ON pizzas.pizza_id = order_details.pizza_id
+GROUP BY pizza_name , price
+ORDER BY price  DESC
+LIMIT 10;
+```
