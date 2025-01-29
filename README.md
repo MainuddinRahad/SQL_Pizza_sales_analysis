@@ -94,7 +94,7 @@ ORDER BY quarterly_revenue ASC
 
 - Q4 has the lowest revenue at **$199,124.10**, about 3-4% lower than the other quarters.
 
-![revenue](assets\c_1.PNG)
+![revenue](assets/c_1.PNG)
 
 I can create this line chart by using Power BI.
 
