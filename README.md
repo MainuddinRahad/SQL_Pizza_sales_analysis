@@ -133,6 +133,6 @@ LIMIT 10;
 
 - These results indicate that **$20.75** is a sweet spot for pricing, balancing affordability with customer demand.
 
-![highest price pizza](assets\c_2.PNG)
+![highest price pizza](assets/c_2.PNG)
 
 
