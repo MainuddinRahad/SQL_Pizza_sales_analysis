@@ -31,7 +31,7 @@ FROM
     LEFT JOIN pizza_types
     ON pizzas.pizza_type_id = pizza_types.pizza_type_id
 GROUP BY pizza_category
-ORDER BY total_ordered_pizza_percentage DESC
+ORDER BY total_ordered_pizza_percentage DESC;
 
 
 /*
@@ -46,6 +46,7 @@ ORDER BY total_ordered_pizza_percentage DESC
 -- These categories together represent nearly half (47.68%) of all
    orders, showing their significant role in overall sales.
 
+-- Chicken pizzas contribute 22.29%, indicating they have a dedicated customer base, but lag slightly behind the other categories.
 
 [
   {
