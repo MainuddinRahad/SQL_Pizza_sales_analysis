@@ -270,5 +270,90 @@ Also I can added a **Line Area** chart to better visualization.
 ![alt text](assets/c_4.PNG)
 
 
+### 8. Calculate the average number of pizzas ordered per day.
+
+```sql
+WITH order_per_day AS( -- Using CTE ..
+SELECT
+    date AS per_day,
+    sum(order_details.quantity) AS pizza_sold
+FROM
+    order_details
+    LEFT JOIN orders
+    ON order_details.order_id = orders.order_id
+GROUP BY date
+ORDER BY date
+)
+
+SELECT
+    CAST(avg(order_per_day.pizza_sold) AS DECIMAL(10,0)) AS avg_order_per_day
+FROM
+    order_per_day;
+```
+![alt text](assets/ca_5.PNG)
+#### 138 orders per day on average.
+
+### 9. Calculate the number of pizzas ordered per day
+
+```sql
+SELECT
+    date AS per_day,
+    sum(order_details.quantity) AS pizza_sold
+FROM
+    order_details
+    LEFT JOIN orders
+    ON order_details.order_id = orders.order_id
+GROUP BY date
+ORDER BY date;
+```
+### Here's the breakdown the number of pizzas ordered per day.
+
+- 📈 Highest sales day: **November 26th (266 pizzas)** 
+
+- 📉 Lowest sales day: **March 22th (77 pizzas)**
+
+
+#### Visula representation of Daily Pizza Sales Trends
+
+![alt text](assets/c_5.PNG)
+
+### 10. Determine the top 5 most ordered pizza types based on revenue.
+
+```sql
+SELECT
+    pizza_types.name AS pizza_name,
+    sum(quantity*price) AS revenue
+FROM
+    order_details
+    LEFT JOIN pizzas
+    ON order_details.pizza_id = pizzas.pizza_id
+    LEFT JOIN pizza_types
+    ON pizzas.pizza_type_id = pizza_types.pizza_type_id
+GROUP BY pizza_type
+ORDER BY revenue DESC
+LIMIT 5;
+```
+- The **top 5 pizza** types together account for nearly **25%** of total revenue,
+   indicating they are core contributors to the business’s sales.
+
+- **The Thai Chicken pizza** is the best-performing individual pizza, contributing
+   **$43434.25** of total revenue.
+
+- The **Barbecue Chicken pizza** is the second best-performing individual pizza , 
+   contributing **$42768** of total revenue.
+
+- **The Classic Deluxe and Spicy Italian pizzas** contribute **$38180.5 and $34831.25**, respectively. While not chicken-based, these pizzas have steady demand.
+
+Here's the visual representation of this query.
+
+![alt text](assets/ca_6.PNG)
+
+Also I can added a **Column** chart to better visualization.
+
+![alt text](assets/c_6.PNG)
+
+
+
+
 
 

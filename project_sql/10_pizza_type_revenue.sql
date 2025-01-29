@@ -4,7 +4,7 @@
 
 
 SELECT
-    pizza_types.pizza_type_id AS pizza_type,
+    pizza_types.name AS pizza_name,
     sum(quantity*price) AS revenue
 FROM
     order_details
@@ -12,7 +12,7 @@ FROM
     ON order_details.pizza_id = pizzas.pizza_id
     LEFT JOIN pizza_types
     ON pizzas.pizza_type_id = pizza_types.pizza_type_id
-GROUP BY pizza_type
+GROUP BY pizza_name
 ORDER BY revenue DESC
 LIMIT 5;
 
