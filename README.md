@@ -115,3 +115,24 @@ GROUP BY pizza_name , price
 ORDER BY price  DESC
 LIMIT 10;
 ```
+### Here's the breakdown of TOP - 10 highest price pizza.
+
+- **The Greek Pizza"** priced at **$35.95** has the lowest number of
+   **orders (28)**, suggesting it might be too expensive.
+
+- The lower-priced variant of **"The Greek Pizza"** at **$25.50** has 
+   significantly more **orders (544)**, showing that demand improves when the price is reduced.
+
+- Most pizzas priced at **$20.75** dominate in order volume: 
+
+    1. **"The Spicy Italian Pizza": 1,088** orders (highest overall).
+
+    2. **"The California Chicken Pizza": 895** orders.
+
+    3. **"The Italian Supreme Pizza":** 735 orders.
+
+- These results indicate that **$20.75** is a sweet spot for pricing, balancing affordability with customer demand.
+
+![highest price pizza](assets\c_2.PNG)
+
+
