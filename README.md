@@ -352,8 +352,143 @@ Also I can added a **Column** chart to better visualization.
 
 ![alt text](assets/c_6.PNG)
 
+### 11. Calculate the percentage contribution of each pizza type to total revenue.
 
+```sql
+SELECT
+    category,
+    sum(quantity * price) AS total_revenue,
+    CAST(((
+        sum(quantity * price) /
+        ( -- Using subquery start ..
+        SELECT 
+            sum(quantity * price) AS total_revenue
+        FROM
+            order_details
+            LEFT JOIN pizzas
+            ON order_details.pizza_id = pizzas.pizza_id
+        ) -- Using subquery end ..
+    )*100) AS DECIMAL(10,2)) AS total_revenue_percentage
+FROM
+    order_details
+    LEFT JOIN pizzas
+    ON order_details.pizza_id = pizzas.pizza_id
+    LEFT JOIN pizza_types
+    ON pizzas.pizza_type_id = pizza_types.pizza_type_id
+GROUP BY category
+ORDER BY total_revenue_percentage DESC;
+```
+### According to sales and order contribution:
 
+- **Classic** pizzas generate the highest revenue at **220,053.10**,
+       accounting for **26.91%** of total revenue.
 
+- This aligns with their dominance in total orders (30.03%),
+       highlighting their widespread appeal and consistent contribution to sales.
 
+- **Supreme** pizzas follow closely, contributing **25.46%** of revenue. 
+       This shows that their higher price point or loaded toppings resonate with customers seeking premium options.
 
+- Despite ranking second in orders **(24.18%)**, their contribution to
+       revenue is proportionally higher, suggesting better margins.
+
+- **Chicken** pizzas generate slightly more revenue (23.96%) than 
+**Veggie** pizzas (23.68%), reflecting a balanced demand for both categories.
+
+Show the result by using a **Pie Chart.**
+
+![alt text](assets/c_7.PNG)
+
+### 12. Analyze the cumulative revenue generated over time.
+
+```sql
+WITH revenue_t AS(  -- Using CTE..
+    SELECT
+        date AS order_date,
+        CAST(sum(quantity*price) AS DECIMAL(10,2)) AS revenue
+    FROM
+        order_details
+        LEFT JOIN pizzas
+        ON order_details.pizza_id = pizzas.pizza_id
+        LEFT JOIN orders
+        ON order_details.order_id = orders.order_id
+    GROUP BY order_date
+    ORDER BY order_date ASC
+)
+
+SELECT
+    revenue_t.order_date,
+    revenue_t.revenue,
+    CAST(sum(revenue_t.revenue) over(ORDER BY revenue_t.order_date) AS DECIMAL(10,2)) AS cum_revenue
+FROM
+    revenue_t
+```
+![alt text](assets/ca_7.PNG)
+
+### 13. Determine the top 3 most ordered pizza types based on revenue for each pizza category.
+
+```sql
+WITH rv AS( -- Using CTE 1
+    SELECT
+        pizza_types.category AS pizza_category,
+        pizza_types.name AS pizza_name,
+        CAST(sum(price*quantity) AS DECIMAL(10,2)) AS revenue
+    FROM
+        order_details
+        LEFT JOIN pizzas
+        ON order_details.pizza_id = pizzas.pizza_id
+        LEFT JOIN pizza_types
+        ON pizzas.pizza_type_id = pizza_types.pizza_type_id
+    GROUP BY pizza_category, pizza_name
+),
+rv_1 AS( -- Using CTE 2
+SELECT
+    rv.pizza_category,
+    rank() over(PARTITION BY rv.pizza_category ORDER BY rv.revenue DESC) AS rank,
+    rv.pizza_name,
+    rv.revenue
+   
+FROM
+    rv
+)
+
+SELECT 
+    * 
+FROM 
+    rv_1
+WHERE
+    rv_1.rank <= 3
+```
+**1.Chicken**
+
+- **Top Revenue-Generating Pizza:** "The Thai Chicken Pizza" leads with a revenue of $43,434.25.
+
+- **Second and Third Positions:** "The Barbecue Chicken Pizza" ($42,768) and "The California Chicken Pizza" ($41,409.50).
+
+**2.Classic**
+
+- Top Performer: "The Classic Deluxe Pizza" generates the most revenue in this category with $38,180.50.
+
+- Next in Line:
+"The Hawaiian Pizza" follows with $32,273.25.
+"The Pepperoni Pizza" secures third with $30,161.75.
+
+**3.Supreme**
+
+- **Top Pizza:** "The Spicy Italian Pizza" leads with a revenue of $34,831.25.
+
+- **Close Competitors:**
+"The Italian Supreme Pizza" ($33,476.75) and "The Sicilian Pizza" ($30,940.50).
+
+**4.Veggie**
+
+- **Top Earner:** "The Four Cheese Pizza" generates $32,265.70, making it the most successful Veggie option.
+
+- **Other Performers:**
+"The Mexicana Pizza" ($26,780.75) and "The Five Cheese Pizza" ($26,066.50).
+
+![alt text](assets/ca_8.PNG)
+
+Here's the more clear visualization of my query.
+
+![alt text](assets/c_8.PNG)
