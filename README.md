@@ -3,6 +3,8 @@
 
 ### Pizza Hut Sales Analysis
 
+![alt text](assets/cover_image.png)
+
 # Project Description
 
 A comprehensive analysis of pizza sales data to uncover insights on revenue, order patterns, and customer preferences. The dataset includes pizza categories, types, prices, and order quantities, allowing us to evaluate performance by category, revenue contribution, and time-of-day distribution.
@@ -492,3 +494,42 @@ WHERE
 Here's the more clear visualization of my query.
 
 ![alt text](assets/c_8.PNG)
+
+# Key Insights
+
+## Final Insights from my Pizza Sales Analysis
+
+- **✅ Sales Distribution** – Classic pizzas dominate (30.03% of total orders), followed by Supreme (24.18%) and Veggie (23.50%), indicating strong customer preference for traditional and loaded options.
+
+- **✅ Top Revenue-Generating Pizzas** – Thai Chicken ($43,434.25) and BBQ Chicken ($42,768) lead in revenue, showing high demand for flavorful, premium options.
+
+- **✅ Sales Patterns by Time** – Peak sales occur in the evening (5-8 PM), contributing the highest orders (18,339), while afternoon sales (1-4 PM) also perform well.
+
+- **✅ Revenue & Order Contribution** –
+
+    - Classic pizzas generate the most revenue (26.91%), aligning with their high order volume.
+
+    - Supreme pizzas contribute 25.46% of revenue, slightly exceeding their order share due to higher pricing.
+
+# What I Learned
+
+### Key Learnings from SQL Queries in This Project 📊🔍
+
+**✅ Data Aggregation & Grouping –** Learned to use GROUP BY to analyze sales trends, revenue distribution, and order contributions across different categories.
+
+**✅ Window Functions & Ranking –** Used RANK() OVER (PARTITION BY ... ORDER BY revenue DESC) to determine the top-selling pizzas per category based on revenue.
+
+**✅ Common Table Expressions (CTEs) –** Utilized WITH CTEs to simplify complex queries, such as calculating cumulative revenue and filtering top-ranked items efficiently.
+
+**✅ Subqueries for Percentage Calculations –** Used subqueries inside SELECT statements to calculate category-wise revenue/order contributions dynamically.
+
+**✅ Date & Time Functions –** Extracted quarters, hours, and daily sales trends using EXTRACT() and CASE statements, identifying peak order times.
+
+**✅ Joining Multiple Tables –** Mastered LEFT JOINs to merge orders, pizzas, and sales data, ensuring comprehensive analysis.
+
+# Conclusion
+
+This project provided valuable insights into pizza sales trends, revenue distribution, and customer preferences using SQL queries. By analyzing order patterns, top-selling pizzas, and peak sales times, I identified key areas for optimizing menu offerings and pricing strategies. The use of advanced SQL techniques improved my data analysis skills, enabling data-driven decision-making for business growth. 🚀🍕
+
+
+
